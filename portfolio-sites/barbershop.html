@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kingdom Cuts — Irving, TX Barbershop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #181818;
+      --surface2: #222222;
+      --text: #f5f0e8;
+      --muted: #888480;
+      --accent: #c8a96e;
+      --accent2: #a88848;
+      --red: #c0392b;
+      --border: #2a2a2a;
+      --radius: 2px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15,15,15,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-book {
+      background: var(--accent) !important;
+      color: #0f0f0f !important;
+      padding: 0.5rem 1.25rem;
+      font-weight: 500 !important;
+    }
+    .nav-book:hover { background: #d4ba80 !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(15,15,15,0.3) 0%, rgba(15,15,15,0.85) 60%, var(--bg) 100%),
+        repeating-conic-gradient(#1a1a1a 0% 25%, #161616 0% 50%) 0 0 / 40px 40px;
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      top: 0;
+      left: 3rem;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-headline {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline span {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 42ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0f0f0f;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #d4ba80; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-block;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--muted); }
+
+    /* TICKER */
+    .ticker {
+      background: var(--accent);
+      padding: 0.75rem 0;
+      overflow: hidden;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-track span {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0f0f0f;
+      padding: 0 2rem;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SERVICES */
+    #services {
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 3rem;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: padding-left 0.3s ease;
+      gap: 1rem;
+    }
+
+    .service-row:hover { padding-left: 1rem; }
+
+    .service-row:hover .service-name { color: var(--accent); }
+
+    .service-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .service-num {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--border);
+      letter-spacing: 0.1em;
+      width: 2rem;
+      flex-shrink: 0;
+    }
+
+    .service-name {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .service-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .service-price {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* BARBERS */
+    #team {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 3rem;
+    }
+
+    .team-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .barbers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .barber-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+
+    .barber-card:hover { border-color: var(--accent2); }
+
+    .barber-img {
+      aspect-ratio: 3/4;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+
+    .barber-availability {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      font-weight: 500;
+    }
+
+    .available { background: #1a3a1a; color: #4caf50; }
+    .busy { background: #3a1a1a; color: #ef5350; }
+
+    .barber-info {
+      padding: 1.5rem;
+    }
+
+    .barber-name {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .barber-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .barber-spec {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .barber-book {
+      display: block;
+      margin-top: 1.25rem;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .barber-book:hover { background: var(--accent); color: #0f0f0f; border-color: var(--accent); }
+
+    /* GALLERY */
+    #gallery {
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 4px;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      overflow: hidden;
+    }
+
+    .gallery-item:hover { opacity: 0.8; }
+    .gallery-item:nth-child(1) { grid-row: 1 / 3; aspect-ratio: auto; min-height: 400px; background: #1e1a16; }
+    .gallery-item:nth-child(2) { aspect-ratio: 1; background: #161a1e; }
+    .gallery-item:nth-child(3) { aspect-ratio: 1; background: #1a1e16; }
+    .gallery-item:nth-child(4) { aspect-ratio: 1; background: #1e1616; }
+    .gallery-item:nth-child(5) { aspect-ratio: 1; background: #161e1a; }
+    .gallery-item:nth-child(6) { aspect-ratio: 1; background: #1a161e; }
+    .gallery-item:nth-child(7) { aspect-ratio: 1; background: #1e1a16; }
+
+    /* BOOKING CTA */
+    #booking {
+      background: var(--accent);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+
+    #booking h2 {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #0f0f0f;
+      line-height: 0.9;
+      margin-bottom: 1.25rem;
+    }
+
+    #booking p {
+      color: rgba(15,15,15,0.6);
+      max-width: 40ch;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-dark {
+      display: inline-block;
+      background: #0f0f0f;
+      color: var(--accent);
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1.1rem 3rem;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #222; }
+
+    /* HOURS */
+    .hours-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hours-item {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .hours-item strong {
+      display: block;
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+
+    .hours-item span { color: var(--muted); }
+
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 0 1.5rem 4rem; }
+      #services, #gallery { padding: 4rem 1.5rem; }
+      #team { padding: 4rem 1.5rem; }
+      .barbers-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-row: auto; min-height: 200px; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Kingdom<span>.</span>Cuts</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#team">Barbers</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#booking" class="nav-book">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-accent-line"></div>
+    <div class="hero-inner">
+      <div class="hero-tag">Irving, TX · Est. 2018</div>
+      <h1 class="hero-headline">Sharp<br><span>Cuts.</span></h1>
+      <div class="hero-row">
+        <p class="hero-sub">Irving's premier barbershop. Walk-ins welcome, appointments preferred. Come as you are, leave looking right.</p>
+        <div class="hero-actions">
+          <a href="#booking" class="btn-primary">Book an Appointment</a>
+          <a href="#services" class="btn-ghost">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Walk-Ins Welcome</span>
+      <span>·</span>
+      <span>Irving, Texas</span>
+      <span>·</span>
+      <span>Tues–Sun Open</span>
+      <span>·</span>
+      <span>Book Online 24/7</span>
+      <span>·</span>
+      <span>Fades · Tapers · Lineups</span>
+      <span>·</span>
+      <span>Walk-Ins Welcome</span>
+      <span>·</span>
+      <span>Irving, Texas</span>
+      <span>·</span>
+      <span>Tues–Sun Open</span>
+      <span>·</span>
+      <span>Book Online 24/7</span>
+      <span>·</span>
+      <span>Fades · Tapers · Lineups</span>
+      <span>·</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <p class="section-label">What we offer</p>
+    <h2 class="section-title">Services</h2>
+    <div class="services-list">
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">01</span>
+          <div>
+            <div class="service-name">Classic Fade</div>
+            <div class="service-desc">Low, mid, or high — clean and precise every time</div>
+          </div>
+        </div>
+        <div class="service-price">$35</div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">02</span>
+          <div>
+            <div class="service-name">Taper + Lineup</div>
+            <div class="service-desc">Tapered sides with a crisp, razor-sharp line</div>
+          </div>
+        </div>
+        <div class="service-price">$40</div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">03</span>
+          <div>
+            <div class="service-name">Beard Trim</div>
+            <div class="service-desc">Shape, fade, and edge your beard to perfection</div>
+          </div>
+        </div>
+        <div class="service-price">$20</div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">04</span>
+          <div>
+            <div class="service-name">Cut + Beard Combo</div>
+            <div class="service-desc">Full service — haircut and beard all in one visit</div>
+          </div>
+        </div>
+        <div class="service-price">$55</div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">05</span>
+          <div>
+            <div class="service-name">Kids Cut (12 & under)</div>
+            <div class="service-desc">Patient, careful cuts for your little ones</div>
+          </div>
+        </div>
+        <div class="service-price">$25</div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <span class="service-num">06</span>
+          <div>
+            <div class="service-name">Hot Towel Shave</div>
+            <div class="service-desc">Old school straight razor shave with hot towel treatment</div>
+          </div>
+        </div>
+        <div class="service-price">$45</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="team-inner">
+      <p class="section-label">The crew</p>
+      <h2 class="section-title">Meet Your Barbers</h2>
+      <div class="barbers-grid">
+        <div class="barber-card">
+          <div class="barber-img">💈<span class="barber-availability available">Available Today</span></div>
+          <div class="barber-info">
+            <div class="barber-name">Marcus J.</div>
+            <div class="barber-title">Master Barber · 12 Years</div>
+            <div class="barber-spec">Specializes in fades, skin fades, and creative designs.</div>
+            <a href="#booking" class="barber-book">Book Marcus →</a>
+          </div>
+        </div>
+        <div class="barber-card">
+          <div class="barber-img">✂️<span class="barber-availability busy">Next Appt: 3pm</span></div>
+          <div class="barber-info">
+            <div class="barber-name">DeShawn W.</div>
+            <div class="barber-title">Senior Barber · 8 Years</div>
+            <div class="barber-spec">Known for sharp lineups and flawless tapers.</div>
+            <a href="#booking" class="barber-book">Book DeShawn →</a>
+          </div>
+        </div>
+        <div class="barber-card">
+          <div class="barber-img">🪒<span class="barber-availability available">Available Today</span></div>
+          <div class="barber-info">
+            <div class="barber-name">Jordan T.</div>
+            <div class="barber-title">Barber · 5 Years</div>
+            <div class="barber-spec">Hot towel shave specialist and beard sculpting expert.</div>
+            <a href="#booking" class="barber-book">Book Jordan →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <p class="section-label">The work</p>
+    <h2 class="section-title">Fresh Cuts</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">💈</div>
+      <div class="gallery-item">✂️</div>
+      <div class="gallery-item">🪒</div>
+      <div class="gallery-item">👑</div>
+      <div class="gallery-item">💇</div>
+      <div class="gallery-item">✨</div>
+      <div class="gallery-item">💈</div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <h2>Book Your<br>Appointment.</h2>
+    <p>Pick your barber, pick your time. Online booking open 24/7 — no phone calls needed.</p>
+    <a href="#" class="btn-dark">Book Online Now →</a>
+  </section>
+
+  <div class="hours-strip">
+    <div class="hours-item"><strong>Mon</strong><span>Closed</span></div>
+    <div class="hours-item"><strong>Tue–Fri</strong><span>9am – 8pm</span></div>
+    <div class="hours-item"><strong>Saturday</strong><span>8am – 7pm</span></div>
+    <div class="hours-item"><strong>Sunday</strong><span>10am – 5pm</span></div>
+    <div class="hours-item"><strong>Location</strong><span>3800 N MacArthur Blvd, Irving TX</span></div>
+  </div>
+
+  <footer>
+    <span>© 2026 Kingdom Cuts · Irving, TX</span>
+    <span>Walk-ins welcome · Appointments preferred</span>
+  </footer>
+
+  <script>
+    // Service row hover ripple
+    document.querySelectorAll('.service-row').forEach(row => {
+      row.addEventListener('click', () => {
+        document.querySelector('#booking').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

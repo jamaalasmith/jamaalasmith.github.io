@@ -33,7 +33,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -44,7 +43,6 @@
       opacity: 0.4;
     }
 
-    /* ── TYPOGRAPHY ── */
     h1, h2, h3 {
       font-family: 'Playfair Display', serif;
       line-height: 1.1;
@@ -54,7 +52,6 @@
     .accent { color: var(--accent); }
     .muted { color: var(--muted); }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -108,7 +105,6 @@
 
     .nav-cta:hover { background: #f0b030 !important; color: #111 !important; }
 
-    /* hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -126,7 +122,6 @@
       transition: 0.3s;
     }
 
-    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -243,7 +238,6 @@
       color: var(--muted);
     }
 
-    /* ── SECTION BASE ── */
     section {
       padding: 6rem 2rem;
     }
@@ -274,7 +268,6 @@
       font-size: 1.05rem;
     }
 
-    /* ── SERVICES ── */
     #services { background: var(--surface); }
 
     .services-grid {
@@ -325,7 +318,6 @@
       line-height: 1.7;
     }
 
-    /* ── PORTFOLIO ── */
     #portfolio {}
 
     .portfolio-grid {
@@ -340,6 +332,9 @@
       border-radius: var(--radius);
       overflow: hidden;
       transition: transform 0.25s, border-color 0.25s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
     }
 
     .portfolio-card:hover {
@@ -360,19 +355,6 @@
     .portfolio-thumb-inner {
       font-size: 3rem;
       opacity: 0.3;
-    }
-
-    .coming-soon-badge {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 0.3rem 0.7rem;
-      border-radius: 2rem;
     }
 
     .portfolio-info {
@@ -403,90 +385,9 @@
       border-radius: 2rem;
     }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--surface); }
+    /* TESTIMONIALS — hidden until ready */
+    #testimonials { display: none; }
 
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .testimonial-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      position: relative;
-    }
-
-    .testimonial-card::before {
-      content: '\201C';
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      color: var(--accent);
-      opacity: 0.2;
-      position: absolute;
-      top: -0.5rem;
-      left: 1.25rem;
-      line-height: 1;
-    }
-
-    .testimonial-text {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .testimonial-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      border: 1px solid var(--border);
-    }
-
-    .testimonial-name {
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .testimonial-biz {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .testimonial-placeholder {
-      text-align: center;
-      padding: 3rem;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .testimonial-placeholder strong {
-      display: block;
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* ── ABOUT ── */
     #about {}
 
     .about-grid {
@@ -500,7 +401,7 @@
       position: relative;
     }
 
-    .about-img-me {
+    .about-img-placeholder {
       aspect-ratio: 4/5;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -510,6 +411,13 @@
       justify-content: center;
       font-size: 4rem;
       color: var(--muted);
+      overflow: hidden;
+    }
+
+    .about-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .about-img-accent {
@@ -538,7 +446,6 @@
 
     .about-cta { margin-top: 2rem; }
 
-    /* ── FAQ ── */
     #faq { background: var(--surface); }
 
     .faq-list {
@@ -595,7 +502,6 @@
       transform: rotate(45deg);
     }
 
-    /* ── FOOTER / CTA BAND ── */
     #contact {
       background: var(--accent);
       padding: 5rem 2rem;
@@ -656,7 +562,6 @@
     }
     .footer-links a:hover { color: var(--text); }
 
-    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -672,7 +577,6 @@
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1.5rem; gap: 1.25rem; }
@@ -689,7 +593,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#hero" class="nav-logo">Jamaal<span>.</span></a>
     <ul class="nav-links" id="navLinks">
@@ -704,7 +607,6 @@
     </button>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <div class="hero-grid-line"></div>
     <div class="hero-grid-line"></div>
@@ -738,7 +640,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <p class="section-label reveal">What I offer</p>
@@ -780,7 +681,6 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
   <section id="portfolio">
     <div class="container">
       <p class="section-label reveal">My work</p>
@@ -788,49 +688,45 @@
       <p class="section-sub reveal">Every project below was custom built — no templates, no drag-and-drop builders.</p>
 
       <div class="portfolio-grid">
-        <div class="portfolio-card reveal">
+        <a href="portfolio-sites/boutique.html" target="_blank" class="portfolio-card reveal">
           <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1918 0%, #2a2520 100%);">
             <span class="portfolio-thumb-inner">🛍️</span>
-            <span class="coming-soon-badge">Coming Soon</span>
           </div>
           <div class="portfolio-info">
             <h3>Local Boutique — E-Commerce</h3>
             <p>A clean, conversion-focused site for a Dallas-area retail store.</p>
             <span class="portfolio-tag">E-Commerce</span>
           </div>
-        </div>
-        <div class="portfolio-card reveal">
+        </a>
+        <a href="portfolio-sites/home-services.html" target="_blank" class="portfolio-card reveal">
           <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
             <span class="portfolio-thumb-inner">🏠</span>
-            <span class="coming-soon-badge">Coming Soon</span>
           </div>
           <div class="portfolio-info">
             <h3>Home Services — Lead Gen</h3>
             <p>A fast, mobile-first site built to capture leads for a DFW contractor.</p>
             <span class="portfolio-tag">Lead Gen</span>
           </div>
-        </div>
-        <div class="portfolio-card reveal">
+        </a>
+        <a href="portfolio-sites/barbershop.html" target="_blank" class="portfolio-card reveal">
           <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1510 0%, #2e2015 100%);">
             <span class="portfolio-thumb-inner">✂️</span>
-            <span class="coming-soon-badge">Coming Soon</span>
           </div>
           <div class="portfolio-info">
             <h3>Barbershop — Booking Site</h3>
             <p>A bold, branded site for a local shop with integrated booking flow.</p>
             <span class="portfolio-tag">Service Business</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS — hidden until ready; remove display:none from #testimonials in CSS to show -->
   <section id="testimonials">
     <div class="container">
       <p class="section-label reveal">Kind words</p>
       <h2 class="section-title reveal">What clients<br><span class="accent">say.</span></h2>
-
       <div class="testimonials-grid reveal">
         <div class="testimonial-placeholder">
           <strong>Testimonials coming soon.</strong>
@@ -842,16 +738,12 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-img-block reveal">
-        <div class="about-img-block reveal">
           <img src="assets/images/jamaal.jpeg" alt="Jamaal Smith — Web Developer in Irving, TX"
             style="width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:4px; border:1px solid var(--border);" />
-          <div class="about-img-accent"></div>
-        </div>
           <div class="about-img-accent"></div>
         </div>
         <div class="about-text">
@@ -868,7 +760,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq">
     <div class="container">
       <p class="section-label reveal">Common questions</p>
@@ -903,7 +794,6 @@
     </div>
   </section>
 
-  <!-- CTA BAND -->
   <section id="contact">
     <div class="container">
       <h2>Ready to grow<br>your business online?</h2>
@@ -912,9 +802,8 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <span>© 2025 Jamaal Smith · Irving, TX</span>
+    <span>© 2026 Jamaal Smith · Irving, TX</span>
     <div class="footer-links">
       <a href="https://instagram.com/jamaalbuilds" target="_blank">Instagram</a>
       <a href="https://calendly.com/jamaalbuilds/free-website-consultation" target="_blank">Book a Call</a>
@@ -922,19 +811,16 @@
   </footer>
 
   <script>
-    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
 
-    // Close nav on link click
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -946,7 +832,6 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
 
-    // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
