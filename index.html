@@ -589,6 +589,151 @@
       .hero-stat-row { gap: 2rem; }
       footer { flex-direction: column; text-align: center; }
     }
+
+    /* ===== Lead chat widget — matched to site theme ===== */
+    #lb-root {
+      font-family: 'DM Sans', sans-serif;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9998;
+    }
+
+    #lb-launcher {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    #lb-launcher:hover { transform: scale(1.05); background: #f0b030; }
+    #lb-launcher svg { width: 24px; height: 24px; }
+
+    #lb-panel {
+      display: none;
+      flex-direction: column;
+      width: 328px;
+      height: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      bottom: 72px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+    }
+    #lb-panel.open { display: flex; }
+
+    #lb-head {
+      background: #0c0b0b;
+      color: var(--text);
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.4;
+      border-bottom: 1px solid var(--border);
+    }
+    #lb-head strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 2px;
+      color: var(--accent);
+    }
+
+    #lb-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lb-msg {
+      max-width: 85%;
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      font-size: 13.5px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      font-weight: 300;
+    }
+    .lb-msg.bot {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      align-self: flex-start;
+    }
+    .lb-msg.user {
+      background: var(--accent);
+      color: #111;
+      align-self: flex-end;
+      font-weight: 400;
+    }
+
+    .lb-book {
+      align-self: flex-start;
+      display: inline-block;
+      margin-top: 2px;
+      background: var(--accent);
+      color: #111;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 9px 14px;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+    .lb-book:hover { background: #f0b030; }
+
+    #lb-inputrow {
+      display: flex;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    #lb-input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 13.5px;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+    }
+    #lb-input::placeholder { color: var(--muted); }
+    #lb-send {
+      border: none;
+      background: none;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 13.5px;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+    #lb-send:disabled { opacity: 0.4; cursor: default; }
+
+    .lb-typing { display: flex; gap: 4px; padding: 4px 0; }
+    .lb-typing span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); opacity: 0.5;
+      animation: lb-bounce 1s infinite ease-in-out;
+    }
+    .lb-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .lb-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes lb-bounce { 0%, 60%, 100% { opacity: 0.4; } 30% { opacity: 1; } }
+
+    @media (max-width: 480px) {
+      #lb-panel { width: calc(100vw - 32px); right: -4px; }
+    }
   </style>
 </head>
 <body>
@@ -810,6 +955,9 @@
     </div>
   </footer>
 
+  <!-- ===== Lead-qualifying chat widget ===== -->
+  <div id="lb-root"></div>
+
   <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
@@ -840,6 +988,131 @@
         if (!isOpen) item.classList.add('open');
       });
     });
+  </script>
+
+  <script>
+  (function () {
+    // ---- CONFIG: edit once your server.js is deployed ----
+    const CONFIG = {
+      endpoint: "https://your-app-name.up.railway.app/api/lead-chat", // your hosted server.js URL
+      bookingUrl: "https://calendly.com/jamaalbuilds/free-website-consultation",
+      businessName: "Jamaal Smith Web Design",
+      greeting: "Hey! I can get you booked for a free call — mind if I ask a couple quick questions first?"
+    };
+    // --------------------------------------------------------
+
+    const root = document.getElementById("lb-root");
+
+    root.innerHTML = `
+      <button id="lb-launcher" aria-label="Open chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </button>
+      <div id="lb-panel">
+        <div id="lb-head">
+          <strong>${CONFIG.businessName}</strong>
+          Usually replies in a few minutes
+        </div>
+        <div id="lb-messages"></div>
+        <div id="lb-inputrow">
+          <input id="lb-input" type="text" placeholder="Type a message..." />
+          <button id="lb-send">Send</button>
+        </div>
+      </div>
+    `;
+
+    const launcher = root.querySelector("#lb-launcher");
+    const panel = root.querySelector("#lb-panel");
+    const messagesEl = root.querySelector("#lb-messages");
+    const input = root.querySelector("#lb-input");
+    const sendBtn = root.querySelector("#lb-send");
+
+    let history = []; // { role: "user" | "assistant", content: string }
+    let opened = false;
+    let qualified = false;
+
+    launcher.addEventListener("click", () => {
+      panel.classList.toggle("open");
+      if (!opened) {
+        opened = true;
+        addBotMessage(CONFIG.greeting);
+      }
+    });
+
+    function addMessage(role, text) {
+      const div = document.createElement("div");
+      div.className = "lb-msg " + (role === "user" ? "user" : "bot");
+      div.textContent = text;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function addBotMessage(text) {
+      addMessage("assistant", text);
+      history.push({ role: "assistant", content: text });
+    }
+
+    function addBookingLink() {
+      const a = document.createElement("a");
+      a.href = CONFIG.bookingUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.className = "lb-book";
+      a.textContent = "📅 Book a time";
+      messagesEl.appendChild(a);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      qualified = true;
+    }
+
+    function showTyping() {
+      const div = document.createElement("div");
+      div.className = "lb-msg bot lb-typing";
+      div.id = "lb-typing-indicator";
+      div.innerHTML = "<span></span><span></span><span></span>";
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById("lb-typing-indicator");
+      if (el) el.remove();
+    }
+
+    async function send() {
+      const text = input.value.trim();
+      if (!text || sendBtn.disabled) return;
+      input.value = "";
+      addMessage("user", text);
+      history.push({ role: "user", content: text });
+      sendBtn.disabled = true;
+      showTyping();
+
+      try {
+        const res = await fetch(CONFIG.endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ history, businessName: CONFIG.businessName })
+        });
+        const data = await res.json();
+        hideTyping();
+        addBotMessage(data.reply);
+        if (data.qualified && !qualified) addBookingLink();
+      } catch (err) {
+        hideTyping();
+        addBotMessage("Sorry, something went wrong on our end — you can still book directly below.");
+        if (!qualified) addBookingLink();
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    sendBtn.addEventListener("click", send);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") send();
+    });
+  })();
   </script>
 </body>
 </html>
