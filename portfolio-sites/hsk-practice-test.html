@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free HSK Practice Test — Find Your Mandarin Level</title>
+<style>
+  :root{
+    --bg: #14100f;
+    --bg-panel: #1c1614;
+    --bg-panel-2: #241b18;
+    --ink: #f2ece7;
+    --ink-dim: #a89890;
+    --ink-faint: #6e5f58;
+    --accent: #d94f3d;
+    --accent-dim: #7a2c22;
+    --good: #4f9d6e;
+    --bad: #b8443a;
+    --line: #332723;
+    font-size: 17px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Iowan Old Style','Georgia',serif;
+    min-height:100%;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  .wrap{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .mark{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .mark .hanzi{
+    font-size: 1.6rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .mark .word{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--ink-faint);
+  }
+  h1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    max-width: 26ch;
+  }
+  .sub{
+    font-size: 1.05rem;
+    color: var(--ink-dim);
+    max-width: 46ch;
+    margin: 0 0 32px;
+    line-height: 1.55;
+  }
+  .progress-track{
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow:hidden;
+    margin-bottom: 28px;
+  }
+  .progress-fill{
+    height:100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width .35s ease;
+  }
+  .progress-label{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .78rem;
+    color: var(--ink-faint);
+    margin: -20px 0 24px;
+  }
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .q-hanzi{
+    font-size: 2.4rem;
+    color: var(--ink);
+    margin: 0 0 6px;
+    line-height:1.1;
+  }
+  .q-pinyin{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink-faint);
+    font-size: .95rem;
+    margin: 0 0 22px;
+  }
+  .q-prompt{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .95rem;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .opt{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align:left;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor:pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover{ border-color: var(--accent); }
+  .opt.correct{ border-color: var(--good); background: rgba(79,157,110,.14); }
+  .opt.wrong{ border-color: var(--bad); background: rgba(184,68,58,.14); }
+  .opt:disabled{ cursor:default; }
+
+  .nav-row{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-top: 24px;
+  }
+  .btn{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    padding: 13px 26px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary{
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:disabled{
+    background: var(--accent-dim);
+    color: rgba(255,255,255,.5);
+    cursor:not-allowed;
+  }
+  .btn-ghost{
+    background: transparent;
+    color: var(--ink-faint);
+    font-size: .85rem;
+  }
+
+  /* results */
+  .result{
+    text-align:left;
+  }
+  .result .level{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .8rem;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .result .headline{
+    font-size: 2.6rem;
+    color: var(--accent);
+    line-height:1;
+    margin: 0 0 14px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+  }
+  .result .desc{
+    color: var(--ink-dim);
+    line-height:1.6;
+    margin-bottom: 26px;
+    font-size: 1.02rem;
+  }
+  .stat-row{
+    display:flex;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .stat{
+    flex:1;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .stat .num{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .stat .lbl{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .72rem;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+  .locked{
+    background: var(--bg-panel-2);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 22px 20px;
+    margin-bottom: 24px;
+  }
+  .locked ul{
+    margin: 12px 0 0;
+    padding-left: 18px;
+    color: var(--ink-dim);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .92rem;
+    line-height: 1.8;
+  }
+  .cta{
+    display:block;
+    width:100%;
+    text-align:center;
+    text-decoration:none;
+    background: var(--accent);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 4px;
+  }
+  .cta-sub{
+    text-align:center;
+    color: var(--ink-faint);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .78rem;
+    margin-top: 10px;
+  }
+  .powered{
+    text-align:center;
+    margin-top: 40px;
+    color: var(--ink-faint);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: .78rem;
+    letter-spacing: .02em;
+  }
+  .powered a{ color: var(--ink-dim); }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress-fill{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mark">
+    <span class="hanzi">测</span>
+    <span class="word">HSK PRACTICE TEST</span>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="powered">Powered by <a href="https://hanyuonline.tools/" target="_blank" rel="noopener">Hanyu Online</a></div>
+</div>
+
+<script>
+// ---- Question bank: mix of HSK1–HSK3 to spread results across levels ----
+const QUESTIONS = [
+  { hanzi:"你好", pinyin:"nǐ hǎo", prompt:"What does this mean?", options:["Hello","Thank you","Goodbye","Sorry"], answer:0, level:1 },
+  { hanzi:"谢谢", pinyin:"xièxie", prompt:"What does this mean?", options:["Please","Excuse me","Thank you","Welcome"], answer:2, level:1 },
+  { hanzi:"我 ___ 学生。", pinyin:"wǒ ___ xuéshēng.", prompt:"Fill in the blank: \"I am a student.\"", options:["是","有","在","去"], answer:0, level:1 },
+  { hanzi:"多少钱？", pinyin:"duōshao qián?", prompt:"What is being asked?", options:["What time is it?","How much does it cost?","Where are you from?","How old are you?"], answer:1, level:2 },
+  { hanzi:"因为 … 所以 …", pinyin:"yīnwèi … suǒyǐ …", prompt:"This pattern is used to express:", options:["Comparison","Cause and effect","A question","A time sequence"], answer:1, level:2 },
+  { hanzi:"她比我高。", pinyin:"tā bǐ wǒ gāo.", prompt:"What does this sentence mean?", options:["She is as tall as me","She is taller than me","I am taller than her","She is not tall"], answer:1, level:2 },
+  { hanzi:"虽然下雨，但是我们还是要去。", pinyin:"suīrán xià yǔ, dànshì wǒmen háishi yào qù.", prompt:"What does this sentence mean?", options:["Because it's raining, we're staying home","Even though it's raining, we're still going","It might rain, so we'll wait","It stopped raining, so we're going"], answer:1, level:3 },
+  { hanzi:"把", pinyin:"bǎ", prompt:"The 把 construction is mainly used to:", options:["Ask a question","Mark the object and show what happens to it","Express negation","Indicate past tense"], answer:1, level:3 },
+  { hanzi:"他好像不太高兴。", pinyin:"tā hǎoxiàng bú tài gāoxìng.", prompt:"What does this sentence suggest?", options:["He is definitely happy","He seems not very happy","He is always happy","He doesn't know if he's happy"], answer:1, level:3 },
+  { hanzi:"我宁愿走路，也不想挤地铁。", pinyin:"wǒ nìngyuàn zǒulù, yě bù xiǎng jǐ dìtiě.", prompt:"What does this sentence mean?", options:["I'd rather take the subway than walk","I'd rather walk than squeeze onto the subway","I have no choice but to take the subway","I enjoy crowded subways"], answer:1, level:3 },
+];
+
+let current = 0;
+let score = 0;
+let levelScores = {1:0,2:0,3:0};
+let levelTotals = {1:0,2:0,3:0};
+QUESTIONS.forEach(q => levelTotals[q.level]++);
+
+const app = document.getElementById('app');
+
+function renderIntro(){
+  app.innerHTML = `
+    <h1>Find out your real Mandarin level in 3 minutes.</h1>
+    <p class="sub">10 questions, HSK 1 through 3. No sign-up to start — see exactly where you stand right now.</p>
+    <button class="btn btn-primary" id="start-btn">Start the test</button>
+  `;
+  document.getElementById('start-btn').onclick = () => { current = 0; score = 0; levelScores = {1:0,2:0,3:0}; renderQuestion(); };
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  const pct = Math.round((current / QUESTIONS.length) * 100);
+  app.innerHTML = `
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-label">Question ${current+1} of ${QUESTIONS.length}</div>
+    <div class="card">
+      <div class="q-hanzi">${q.hanzi}</div>
+      <div class="q-pinyin">${q.pinyin}</div>
+      <div class="q-prompt">${q.prompt}</div>
+      <div class="options">
+        ${q.options.map((opt,i) => `<button class="opt" data-i="${i}">${opt}</button>`).join('')}
+      </div>
+    </div>
+  `;
+  const btns = app.querySelectorAll('.opt');
+  btns.forEach(b => b.onclick = () => handleAnswer(parseInt(b.dataset.i), q, btns));
+}
+
+function handleAnswer(i, q, btns){
+  btns.forEach(b => b.disabled = true);
+  const correctBtn = btns[q.answer];
+  correctBtn.classList.add('correct');
+  if(i !== q.answer){
+    btns[i].classList.add('wrong');
+  } else {
+    score++;
+    levelScores[q.level]++;
+  }
+  setTimeout(() => {
+    current++;
+    if(current < QUESTIONS.length){
+      renderQuestion();
+    } else {
+      renderResult();
+    }
+  }, 700);
+}
+
+function estimateLevel(){
+  // Rough placement: needs solid accuracy at a level to be "placed" there
+  const acc = lvl => levelTotals[lvl] ? levelScores[lvl] / levelTotals[lvl] : 0;
+  if(acc(3) >= 0.66) return 3;
+  if(acc(2) >= 0.66) return 2;
+  if(acc(1) >= 0.66) return 1;
+  return 0;
+}
+
+const LEVEL_COPY = {
+  0: { name:"Absolute Beginner", desc:"You're just starting out — and that's a fine place to be. The building blocks (greetings, basic sentence patterns) are what's next." },
+  1: { name:"HSK 1", desc:"You've got the basics down: greetings, simple statements, everyday words. Next step is building sentences with more structure." },
+  2: { name:"HSK 2", desc:"You can handle simple daily conversation and comparisons. You're ready for connectors, more vocabulary, and longer sentences." },
+  3: { name:"HSK 3", desc:"You're reading real sentence structures and picking up nuance. This is where a guided path starts paying off fastest." },
+};
+
+function renderResult(){
+  const lvl = estimateLevel();
+  const copy = LEVEL_COPY[lvl];
+  const pct = Math.round((score / QUESTIONS.length) * 100);
+  app.innerHTML = `
+    <div class="result">
+      <div class="level">YOUR RESULT</div>
+      <div class="headline">${copy.name}</div>
+      <div class="desc">${copy.desc}</div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">${score}/${QUESTIONS.length}</div>
+          <div class="lbl">CORRECT</div>
+        </div>
+        <div class="stat">
+          <div class="num">${pct}%</div>
+          <div class="lbl">ACCURACY</div>
+        </div>
+      </div>
+
+      <div class="locked">
+        <strong style="font-family:-apple-system,sans-serif;font-size:.95rem;">Your full placement is ready</strong>
+        <ul>
+          <li>Exact HSK sub-level breakdown, question by question</li>
+          <li>A study plan built around your gaps, not a generic course</li>
+          <li>Audio lessons and native speaker practice from day one</li>
+        </ul>
+      </div>
+
+      <a class="cta" href="https://hanyuonline.tools/app/planes.html?ref=REPLACE_WITH_YOUR_CODE" target="_blank" rel="noopener">See my full results & study plan →</a>
+      <div class="cta-sub">Plans from $6/month · Hanyu Online</div>
+
+      <div style="text-align:center;margin-top:28px;">
+        <button class="btn btn-ghost" id="retry-btn">Retake the test</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retry-btn').onclick = renderIntro;
+}
+
+renderIntro();
+</script>
+</body>
+</html>
