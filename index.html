@@ -4,33 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Local SEO in Inglewood, CA | Jamaal Smith</title>
   <meta name="description"
-    content="Local SEO and hand-coded websites for Inglewood businesses. Book a free call with Jamaal Smith." />
-  <link rel="canonical" href="https://jamaalsmith.com/hardest-working-seo-expert-los-angeles" />
-
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Local SEO in Inglewood, CA | Jamaal Smith" />
-  <meta property="og:description"
-    content="Local SEO and hand-coded websites for Inglewood businesses. Book a free call with Jamaal Smith." />
-  <meta property="og:url" content="https://jamaalsmith.com/hardest-working-seo-expert-los-angeles" />
-  <meta property="og:image"
-    content="https://jamaalsmith.com/assets/images/hardest-working-seo-expert-los-angeles.jpg" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Jamaal Smith — SEO & Web Design",
-    "url": "https://jamaalsmith.com/hardest-working-seo-expert-los-angeles",
-    "image": "https://jamaalsmith.com/assets/images/hardest-working-seo-expert-los-angeles.jpg",
-    "description": "Local SEO and hand-coded websites for businesses in Inglewood, California.",
-    "areaServed": { "@type": "City", "name": "Inglewood", "containedInPlace": { "@type": "State", "name": "California" } },
-    "founder": { "@type": "Person", "name": "Jamaal Smith" },
-    "sameAs": ["https://instagram.com/jamaalbuilds"]
-  }
-  </script>
-
+    content="SEO and hand-coded websites for small businesses in Los Angeles, CA. Book a free call with Jamaal Smith." />
+  <link rel="canonical" href="https://jamaalsmith.com/" />
+  <title>Jamaal Smith | SEO and Websites in Los Angeles, CA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -92,7 +69,10 @@
       color: var(--accent);
     }
 
-    /* NAV */
+    .muted {
+      color: var(--muted);
+    }
+
     nav {
       position: fixed;
       top: 0;
@@ -147,10 +127,12 @@
       padding: 0.5rem 1.25rem;
       border-radius: var(--radius);
       font-weight: 500 !important;
+      transition: background 0.2s !important;
     }
 
     .nav-cta:hover {
       background: #f0b030 !important;
+      color: #111 !important;
     }
 
     .hamburger {
@@ -168,14 +150,16 @@
       width: 24px;
       height: 2px;
       background: var(--text);
+      transition: 0.3s;
     }
 
-    /* HERO */
-    .page-hero {
-      padding: 9rem 2rem 4rem;
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid var(--border);
     }
 
     .hero-grid-line {
@@ -199,7 +183,7 @@
       left: 75%;
     }
 
-    .container {
+    .hero-inner {
       max-width: 1100px;
       margin: 0 auto;
       width: 100%;
@@ -220,10 +204,10 @@
       animation: fadeUp 0.8s ease both;
     }
 
-    .page-hero h1 {
-      font-size: clamp(2.6rem, 7vw, 5.5rem);
+    .hero-headline {
+      font-size: clamp(3rem, 8vw, 7rem);
       letter-spacing: -0.02em;
-      max-width: 16ch;
+      max-width: 14ch;
       margin-bottom: 1.5rem;
       animation: fadeUp 0.8s 0.1s ease both;
     }
@@ -231,86 +215,272 @@
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--muted);
-      max-width: 50ch;
+      max-width: 48ch;
+      margin-bottom: 2.5rem;
       animation: fadeUp 0.8s 0.2s ease both;
     }
 
-    /* ARTICLE */
-    .proof {
-      padding: 5rem 2rem;
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
     }
 
-    .proof-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .proof-body h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-      margin: 2.5rem 0 1rem;
-    }
-
-    .proof-body h2:first-child {
-      margin-top: 0;
-    }
-
-    .proof-body p {
-      color: var(--muted);
-      margin-bottom: 1.1rem;
-      font-size: 1.02rem;
-    }
-
-    .proof-body p strong {
-      color: var(--text);
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #111;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
     }
 
-    .proof-list {
-      list-style: none;
-      margin: 0.5rem 0 1.5rem;
+    .btn-primary:hover {
+      background: #f0b030;
+      transform: translateY(-1px);
     }
 
-    .proof-list li {
-      color: var(--muted);
-      padding: 0.9rem 0 0.9rem 1.75rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
+    .btn-ghost {
+      display: inline-block;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
     }
 
-    .proof-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
+    .btn-ghost:hover {
+      border-color: var(--muted);
+      transform: translateY(-1px);
+    }
+
+    .hero-stat-row {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s 0.4s ease both;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
       color: var(--accent);
     }
 
-    .proof-list li strong {
-      color: var(--text);
-      font-weight: 500;
+    .hero-stat span {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .proof-aside {
-      position: sticky;
-      top: 7rem;
+    section {
+      padding: 6rem 2rem;
     }
 
-    .proof-img-wrap {
-      position: relative;
-    }
-
-    .proof-img-wrap img {
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
       width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: block;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 3.5rem;
+      font-size: 1.05rem;
+    }
+
+    #services {
       background: var(--surface);
     }
 
-    .proof-img-accent {
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+    }
+
+    .service-card {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    .service-card:hover {
+      background: var(--surface2);
+    }
+
+    .service-card:hover::after {
+      width: 100%;
+    }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    #portfolio {}
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-dim);
+    }
+
+    .portfolio-thumb {
+      height: 200px;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-thumb-inner {
+      font-size: 3rem;
+      opacity: 0.3;
+    }
+
+    .portfolio-info {
+      padding: 1.5rem;
+    }
+
+    .portfolio-info h3 {
+      font-size: 1.05rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .portfolio-info p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2rem;
+    }
+
+    /* TESTIMONIALS, hidden until ready */
+    #testimonials {
+      display: none;
+    }
+
+    #about {}
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-block {
+      position: relative;
+    }
+
+    .about-img-placeholder {
+      aspect-ratio: 4/5;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--muted);
+      overflow: hidden;
+    }
+
+    .about-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-img-accent {
       position: absolute;
       bottom: -1rem;
       right: -1rem;
@@ -321,61 +491,85 @@
       z-index: -1;
     }
 
-    .stat-box {
-      margin-top: 2.5rem;
+    .about-text .section-title {
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 0.975rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-cta {
+      margin-top: 2rem;
+    }
+
+    #faq {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
     }
 
-    .stat-box div {
-      padding: 1.25rem;
+    .faq-list {
+      max-width: 720px;
     }
 
-    .stat-box div:nth-child(odd) {
-      border-right: 1px solid var(--border);
-    }
-
-    .stat-box div:nth-child(-n+2) {
+    .faq-item {
       border-bottom: 1px solid var(--border);
     }
 
-    .stat-box strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
       color: var(--accent);
-      line-height: 1.2;
     }
 
-    .stat-box span {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .faq-icon {
+      font-size: 1.25rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      font-style: normal;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
       color: var(--muted);
+      line-height: 1.75;
+      max-height: none;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
     }
 
-    .btn-primary {
-      display: inline-block;
-      background: var(--accent);
-      color: #111;
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 0.9rem 2rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      margin-top: 1rem;
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 1.5rem;
     }
 
-    .btn-primary:hover {
-      background: #f0b030;
-      transform: translateY(-1px);
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
     }
 
-    /* CONTACT */
     #contact {
       background: var(--accent);
       padding: 5rem 2rem;
@@ -383,7 +577,7 @@
     }
 
     #contact h2 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       color: #111;
       margin-bottom: 1rem;
     }
@@ -399,6 +593,7 @@
       display: inline-block;
       background: #111;
       color: var(--accent);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       font-size: 1rem;
       padding: 1rem 2.5rem;
@@ -413,8 +608,10 @@
     }
 
     footer {
+      background: var(--bg);
       border-top: 1px solid var(--border);
       padding: 2rem;
+      text-align: center;
       font-size: 0.8rem;
       color: var(--muted);
       display: flex;
@@ -462,19 +659,6 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 860px) {
-      .proof-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .proof-aside {
-        position: static;
-        order: -1;
-        max-width: 420px;
-      }
-    }
-
     @media (max-width: 768px) {
       nav {
         padding: 1rem 1.25rem;
@@ -501,12 +685,21 @@
         display: flex;
       }
 
-      .page-hero {
+      #hero {
         padding: 7rem 1.25rem 3rem;
       }
 
-      .proof {
-        padding: 3.5rem 1.25rem;
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-stat-row {
+        gap: 2rem;
       }
 
       footer {
@@ -514,115 +707,475 @@
         text-align: center;
       }
     }
+
+    /* ===== Lead chat widget, matched to site theme ===== */
+    #lb-root {
+      font-family: 'DM Sans', sans-serif;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9998;
+    }
+
+    #lb-launcher {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    #lb-launcher:hover {
+      transform: scale(1.05);
+      background: #f0b030;
+    }
+
+    #lb-launcher svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    #lb-panel {
+      display: none;
+      flex-direction: column;
+      width: 328px;
+      height: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      bottom: 72px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    #lb-panel.open {
+      display: flex;
+    }
+
+    #lb-head {
+      background: #0c0b0b;
+      color: var(--text);
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.4;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #lb-head strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 2px;
+      color: var(--accent);
+    }
+
+    #lb-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lb-msg {
+      max-width: 85%;
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      font-size: 13.5px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      font-weight: 300;
+    }
+
+    .lb-msg.bot {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      align-self: flex-start;
+    }
+
+    .lb-msg.user {
+      background: var(--accent);
+      color: #111;
+      align-self: flex-end;
+      font-weight: 400;
+    }
+
+    .lb-book {
+      align-self: flex-start;
+      display: inline-block;
+      margin-top: 2px;
+      background: var(--accent);
+      color: #111;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 9px 14px;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .lb-book:hover {
+      background: #f0b030;
+    }
+
+    #lb-inputrow {
+      display: flex;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    #lb-input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 13.5px;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    #lb-input::placeholder {
+      color: var(--muted);
+    }
+
+    #lb-send {
+      border: none;
+      background: none;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 13.5px;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+
+    #lb-send:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .lb-typing {
+      display: flex;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .lb-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      animation: lb-bounce 1s infinite ease-in-out;
+    }
+
+    .lb-typing span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .lb-typing span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes lb-bounce {
+
+      0%,
+      60%,
+      100% {
+        opacity: 0.4;
+      }
+
+      30% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #lb-panel {
+        width: calc(100vw - 32px);
+        right: -4px;
+      }
+    }
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"Jamaal Smith, SEO & Web Design","url":"https://jamaalsmith.com/","description":"SEO and hand-coded websites for small businesses in Los Angeles, California.","areaServed":{"@type":"City","name":"Los Angeles"},"founder":{"@type":"Person","name":"Jamaal Smith"},"sameAs":["https://instagram.com/jamaalbuilds"]}
+  </script>
 </head>
 
 <body>
 
   <nav>
-    <a href="/" class="nav-logo">Jamaal<span>.</span></a>
+    <a href="#hero" class="nav-logo">Jamaal<span>.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/#services">Services</a></li>
-      <li><a href="/#portfolio">Work</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="/#faq">FAQ</a></li>
-      <li><a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" rel="noopener"
-          class="nav-cta">Book a Call</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" class="nav-cta">Book a
+          Call</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <header class="page-hero">
+  <section id="hero">
     <div class="hero-grid-line"></div>
     <div class="hero-grid-line"></div>
     <div class="hero-grid-line"></div>
-    <div class="container">
-      <span class="hero-tag">Inglewood, CA · Local SEO</span>
-      <h1>Local SEO for <span class="accent">Inglewood Businesses</span></h1>
-      <p class="hero-sub">Clear, measurable SEO work for businesses in Inglewood. Here is how I approach it.</p>
+    <div class="hero-inner">
+      <span class="hero-tag">Los Angeles, CA · SEO &amp; Web Design</span>
+      <h1 class="hero-headline">
+        SEO and websites for <span class="accent">Los Angeles businesses.</span>
+      </h1>
+      <p class="hero-sub">
+        I build fast, hand-coded websites for small businesses in Los Angeles. Built to load quickly and get found
+        locally.
+      </p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" class="btn-primary">Book
+          a Free Call</a>
+        <a href="#portfolio" class="btn-ghost">See My Work</a>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Custom Built</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Los Angeles</strong>
+          <span>Local & Available</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Fast</strong>
+          <span>Quick Turnaround</span>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="proof">
-      <div class="container proof-grid">
+  <section id="services">
+    <div class="container">
+      <p class="section-label reveal">What I offer</p>
+      <h2 class="section-title reveal">Services built for<br><span class="accent">local businesses.</span></h2>
+      <p class="section-sub reveal">No templates. Every site is hand-coded to load fast and make the next step obvious.
+      </p>
 
-        <article class="proof-body">
-          <h2 class="reveal">How I work</h2>
-          <p class="reveal">Rankings follow consistent work. I focus on the fixes that move local search for Inglewood
-            businesses: a fast site, a complete Google Business Profile, a page for each service, and accurate listings.
-          </p>
-
-          <h2 class="reveal">Background</h2>
-          <ul class="proof-list reveal">
-            <li><strong>Local focus.</strong> Inglewood and nearby Los Angeles neighborhoods.</li>
-            <li><strong>Every site hand-coded.</strong> No page builders, no bloated themes. Real HTML, CSS,
-              and JavaScript that loads fast and gives Google clean signals.</li>
-            <li><strong>Five years of engineering.</strong> Three of them as a tech lead, shipping
-              full-stack products in React, Next.js, .NET, and AWS.</li>
-            <li><strong>Still studying.</strong> I'm completing a Master's in Software Engineering while
-              running client work, because the search landscape keeps moving.</li>
-            <li><strong>U.S. Army veteran.</strong> Discipline isn't a slogan for me. It's how I was trained
-              to operate.</li>
-          </ul>
-
-          <h2 class="reveal">What that means for your business</h2>
-          <p class="reveal">Local SEO isn't magic. It's a long list of small things done correctly and
-            consistently: a fast site, a fully built Google Business Profile, the right pages for the right
-            searches, accurate listings, and steady reviews. Most businesses lose to competitors who simply
-            did more of those things.</p>
-          <p class="reveal">That's where I come in. <strong>I work with a limited number of clients at a time</strong>,
-            so the effort goes where it counts.</p>
-          <p class="reveal">Whether you run a restaurant, a shop, or a service business in Inglewood, I can help your
-            site and listings bring in more local customers. Let's talk about where you rank today.</p>
-          <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" rel="noopener"
-            class="btn-primary reveal">Book a Free SEO Call →</a>
-        </article>
-
-        <aside class="proof-aside">
-          <div class="proof-img-wrap reveal">
-            <img src="assets/images/hardest-working-seo-expert-los-angeles.jpg"
-              alt="Jamaal Smith, local SEO for Inglewood businesses" width="800" height="1000" loading="eager" />
-            <div class="proof-img-accent"></div>
-          </div>
-          <div class="stat-box reveal">
-            <div><strong>Inglewood</strong><span>Local Focus</span></div>
-            <div><strong>5 yrs</strong><span>Engineering</span></div>
-            <div><strong>100%</strong><span>Hand-Coded</span></div>
-            <div><strong>Vet</strong><span>U.S. Army</span></div>
-          </div>
-        </aside>
-
+      <div class="services-grid reveal">
+        <div class="service-card">
+          <span class="service-icon">🏗️</span>
+          <h3>Custom Website Design</h3>
+          <p>A custom site built with HTML, CSS, and JS. No page builders, no bloat. It shows your brand and makes the
+            next step clear.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📱</span>
+          <h3>Mobile-First Development</h3>
+          <p>Most of your customers find you on their phones. Every site I build looks and works flawlessly on all
+            screen sizes.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">⚡</span>
+          <h3>Performance Optimization</h3>
+          <p>Slow sites lose visitors and rank lower. I handle the speed work so you don't have to.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔍</span>
+          <h3>Local SEO Setup</h3>
+          <p>I structure your site so Google knows where you are and what you do.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔧</span>
+          <h3>Updates & Maintenance</h3>
+          <p>Need a change after launch? I'm local. You message me directly, with no ticket queue.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🚀</span>
+          <h3>Landing Pages</h3>
+          <p>Running a promotion? A dedicated landing page keeps visitors focused on one offer.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact">
-      <div class="container">
-        <h2>Ready to outrank<br>your competitors?</h2>
-        <p>Book a free 20-minute call. I'll look at where you rank today and tell you exactly what I'd do first.
-        </p>
-        <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" rel="noopener"
-          class="btn-dark">Book Your Free Call →</a>
+  <section id="portfolio">
+    <div class="container">
+      <p class="section-label reveal">My work</p>
+      <h2 class="section-title reveal">Built from<br><span class="accent">scratch.</span></h2>
+      <p class="section-sub reveal">Every project below was custom built, no templates, no drag-and-drop builders.</p>
+
+      <div class="portfolio-grid">
+        <a href="portfolio-sites/boutique.html" target="_blank" class="portfolio-card reveal">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1918 0%, #2a2520 100%);">
+            <span class="portfolio-thumb-inner">🛍️</span>
+          </div>
+          <div class="portfolio-info">
+            <h3>Local Boutique, E-Commerce</h3>
+            <p>A clean, conversion-focused site for a Dallas-area retail store.</p>
+            <span class="portfolio-tag">E-Commerce</span>
+          </div>
+        </a>
+        <a href="portfolio-sites/home-services.html" target="_blank" class="portfolio-card reveal">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+            <span class="portfolio-thumb-inner">🏠</span>
+          </div>
+          <div class="portfolio-info">
+            <h3>Home Services, Lead Gen</h3>
+            <p>A fast, mobile-first site built to capture leads for a DFW contractor.</p>
+            <span class="portfolio-tag">Lead Gen</span>
+          </div>
+        </a>
+        <a href="portfolio-sites/barbershop.html" target="_blank" class="portfolio-card reveal">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1510 0%, #2e2015 100%);">
+            <span class="portfolio-thumb-inner">✂️</span>
+          </div>
+          <div class="portfolio-info">
+            <h3>Barbershop, Booking Site</h3>
+            <p>A bold, branded site for a local shop with integrated booking flow.</p>
+            <span class="portfolio-tag">Service Business</span>
+          </div>
+        </a>
+        <a href="portfolio-sites/hsk-practice-test.html" target="_blank" class="portfolio-card reveal">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1512 0%, #3a1a14 100%);">
+            <span class="portfolio-thumb-inner">🈶</span>
+          </div>
+          <div class="portfolio-info">
+            <h3>HSK Practice Test, Learning Tool</h3>
+            <p>An interactive Mandarin placement quiz built for a language-learning platform.</p>
+            <span class="portfolio-tag">Interactive Tool</span>
+          </div>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS, hidden until ready; remove display:none from #testimonials in CSS to show -->
+  <section id="testimonials">
+    <div class="container">
+      <p class="section-label reveal">Kind words</p>
+      <h2 class="section-title reveal">What clients<br><span class="accent">say.</span></h2>
+      <div class="testimonials-grid reveal">
+        <div class="testimonial-placeholder">
+          <strong>Testimonials coming soon.</strong>
+          Currently working with my first two clients. Check back shortly, or be one of them.
+          <br><br>
+          <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" class="btn-primary"
+            style="font-size:0.85rem; padding: 0.6rem 1.4rem;">Book a Free Call →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-block reveal">
+          <img src="assets/images/jamaal.jpeg" alt="Jamaal Smith, SEO and web developer in Los Angeles, CA"
+            style="width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:4px; border:1px solid var(--border);" />
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-text">
+          <p class="section-label reveal">About me</p>
+          <h2 class="section-title reveal">I'm Jamaal.<br><span class="accent">I build for real.</span></h2>
+          <p class="reveal">I'm an SEO and web developer based in <strong>Los Angeles, CA</strong>. I was born and
+            raised in Los Angeles. I build custom websites for small businesses who are tired of looking like everyone
+            else online.</p>
+          <p class="reveal">I write real HTML, CSS, and JavaScript. No drag-and-drop builders, no bloated WordPress
+            themes. Your site loads faster and is easier to find.</p>
+          <p class="reveal"><strong>I take a limited number of clients at a time.</strong> You get my full attention
+            from start to launch.</p>
+          <div class="about-cta reveal">
+            <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank"
+              class="btn-primary">Let's Talk →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <p class="section-label reveal">Common questions</p>
+      <h2 class="section-title reveal">FAQ</h2>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <h3 class="faq-question">How much does a website cost? </h3>
+          <div class="faq-answer">Pricing depends on the number of pages, features, and timeline. Book a free 20-minute
+            call and I'll give you a clear quote.</div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How long does it take to build a website? </h3>
+          <div class="faq-answer">Most small business sites take 1 to 3 weeks from kickoff to launch. The timing depends
+            on how fast we settle the design and how fast you send content: logo, photos, copy. I give you a timeline
+            upfront.</div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Do I need to know anything technical? </h3>
+          <div class="faq-answer">No. I handle design, development, and launch. You run your business. I keep you
+            updated at every step, in plain language.</div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Will my site work on phones? </h3>
+          <div class="faq-answer">Yes. I build for phones first, then scale up to desktop. Most local searches happen on
+            phones, so your site has to work on every device.</div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What do you need from me to get started? </h3>
+          <div class="faq-answer">Book a call. We talk about your business and goals. Then I send a proposal. If it
+            looks good, we start. I guide you on the rest: logo files, photos, content.</div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Do you only work with Los Angeles businesses? </h3>
+          <div class="faq-answer">My focus is Los Angeles and nearby neighborhoods. I also work with small businesses
+            across Los Angeles County. Being local means I can meet in person if needed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Ready to grow<br>your business online?</h2>
+      <p>Book a free 20-minute call. No pressure, no pitch. Just a straight conversation about what your business needs.
+      </p>
+      <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" class="btn-dark">Book Your
+        Free Call →</a>
+    </div>
+  </section>
 
   <footer>
-    <span>© 2026 Jamaal Smith · Local SEO for Inglewood Businesses</span>
+    <span>© 2026 Jamaal Smith · Los Angeles, CA</span>
     <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="https://instagram.com/jamaalbuilds" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank" rel="noopener">Book a
-        Call</a>
+      <a href="https://instagram.com/jamaalbuilds" target="_blank">Instagram</a>
+      <a href="https://calendly.com/jamaalbuilds/free-website-seo-intro-call" target="_blank">Book a Call</a>
     </div>
   </footer>
+
+  <!-- ===== Lead-qualifying chat widget ===== -->
+  <div id="lb-root"></div>
+
   <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
 
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -634,6 +1187,140 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script>
+    (function () {
+      // ---- CONFIG: edit once your server.js is deployed ----
+      const CONFIG = {
+        endpoint: "https://your-app-name.up.railway.app/api/lead-chat", // your hosted server.js URL
+        bookingUrl: "https://calendly.com/jamaalbuilds/free-website-seo-intro-call",
+        businessName: "Jamaal Smith Web Design",
+        greeting: "Hey! I can get you booked for a free call, mind if I ask a couple quick questions first?"
+      };
+      // --------------------------------------------------------
+
+      const root = document.getElementById("lb-root");
+
+      root.innerHTML = `
+      <button id="lb-launcher" aria-label="Open chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </button>
+      <div id="lb-panel">
+        <div id="lb-head">
+          <strong>${CONFIG.businessName}</strong>
+          Usually replies in a few minutes
+        </div>
+        <div id="lb-messages"></div>
+        <div id="lb-inputrow">
+          <input id="lb-input" type="text" placeholder="Type a message..." />
+          <button id="lb-send">Send</button>
+        </div>
+      </div>
+    `;
+
+      const launcher = root.querySelector("#lb-launcher");
+      const panel = root.querySelector("#lb-panel");
+      const messagesEl = root.querySelector("#lb-messages");
+      const input = root.querySelector("#lb-input");
+      const sendBtn = root.querySelector("#lb-send");
+
+      let history = []; // { role: "user" | "assistant", content: string }
+      let opened = false;
+      let qualified = false;
+
+      launcher.addEventListener("click", () => {
+        panel.classList.toggle("open");
+        if (!opened) {
+          opened = true;
+          addBotMessage(CONFIG.greeting);
+        }
+      });
+
+      function addMessage(role, text) {
+        const div = document.createElement("div");
+        div.className = "lb-msg " + (role === "user" ? "user" : "bot");
+        div.textContent = text;
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      function addBotMessage(text) {
+        addMessage("assistant", text);
+        history.push({ role: "assistant", content: text });
+      }
+
+      function addBookingLink() {
+        const a = document.createElement("a");
+        a.href = CONFIG.bookingUrl;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.className = "lb-book";
+        a.textContent = "📅 Book a time";
+        messagesEl.appendChild(a);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        qualified = true;
+      }
+
+      function showTyping() {
+        const div = document.createElement("div");
+        div.className = "lb-msg bot lb-typing";
+        div.id = "lb-typing-indicator";
+        div.innerHTML = "<span></span><span></span><span></span>";
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      function hideTyping() {
+        const el = document.getElementById("lb-typing-indicator");
+        if (el) el.remove();
+      }
+
+      async function send() {
+        const text = input.value.trim();
+        if (!text || sendBtn.disabled) return;
+        input.value = "";
+        addMessage("user", text);
+        history.push({ role: "user", content: text });
+        sendBtn.disabled = true;
+        showTyping();
+
+        try {
+          const res = await fetch(CONFIG.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ history, businessName: CONFIG.businessName })
+          });
+          const data = await res.json();
+          hideTyping();
+          addBotMessage(data.reply);
+          if (data.qualified && !qualified) addBookingLink();
+        } catch (err) {
+          hideTyping();
+          addBotMessage("Sorry, something went wrong on our end, you can still book directly below.");
+          if (!qualified) addBookingLink();
+        } finally {
+          sendBtn.disabled = false;
+          input.focus();
+        }
+      }
+
+      sendBtn.addEventListener("click", send);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") send();
+      });
+    })();
   </script>
 </body>
 
