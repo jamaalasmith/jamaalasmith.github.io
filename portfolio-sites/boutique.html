@@ -347,6 +347,8 @@
       align-items: center;
       justify-content: center;
       font-size: 5rem;
+      position: relative;
+      overflow: hidden;
     }
 
     .about-content {
@@ -395,6 +397,22 @@
     }
 
     .insta-item:hover { opacity: 0.75; }
+
+    /* IMAGES */
+    .hero-img img,
+    .product-img img,
+    .about-img img,
+    .insta-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-img-label,
+    .product-badge { z-index: 2; }
 
     /* FOOTER */
     footer {
@@ -460,9 +478,9 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-img" style="font-size:5rem;">👗<span class="hero-img-label">Spring Collection</span></div>
-      <div class="hero-img">✨<span class="hero-img-label">Accessories</span></div>
-      <div class="hero-img">👜<span class="hero-img-label">Handbags</span></div>
+      <div class="hero-img"><img src="../assets/images/maison-hero-spring.jpg" alt="Spring Collection at Maison Soleil"><span class="hero-img-label">Spring Collection</span></div>
+      <div class="hero-img"><img src="../assets/images/maison-hero-accessories.jpg" alt="Accessories at Maison Soleil"><span class="hero-img-label">Accessories</span></div>
+      <div class="hero-img"><img src="../assets/images/maison-hero-handbags.jpg" alt="Handbags at Maison Soleil"><span class="hero-img-label">Handbags</span></div>
     </div>
   </section>
 
@@ -489,25 +507,25 @@
     </div>
     <div class="products-grid">
       <div class="product-card">
-        <div class="product-img" style="background:#ede0d4;">👗<span class="product-badge">New</span></div>
+        <div class="product-img" style="background:#ede0d4;"><img src="../assets/images/maison-dress.jpg" alt="Linen Wrap Dress"><span class="product-badge">New</span></div>
         <p class="product-category">Dresses</p>
         <h3 class="product-name">Linen Wrap Dress</h3>
         <p class="product-price">$128</p>
       </div>
       <div class="product-card">
-        <div class="product-img" style="background:#ddd0c4;">🧥</div>
+        <div class="product-img" style="background:#ddd0c4;"><img src="../assets/images/maison-blazer.jpg" alt="Oversized Blazer"></div>
         <p class="product-category">Outerwear</p>
         <h3 class="product-name">Oversized Blazer</h3>
         <p class="product-price">$195</p>
       </div>
       <div class="product-card">
-        <div class="product-img" style="background:#e8ddd4;">👜<span class="product-badge">Best Seller</span></div>
+        <div class="product-img" style="background:#e8ddd4;"><img src="../assets/images/maison-tote.jpg" alt="Woven Tote"><span class="product-badge">Best Seller</span></div>
         <p class="product-category">Bags</p>
         <h3 class="product-name">Woven Tote</h3>
         <p class="product-price">$89</p>
       </div>
       <div class="product-card">
-        <div class="product-img" style="background:#d8ccbe;">✨</div>
+        <div class="product-img" style="background:#d8ccbe;"><img src="../assets/images/maison-hoops.jpg" alt="Gold Hoop Set"></div>
         <p class="product-category">Jewelry</p>
         <h3 class="product-name">Gold Hoop Set</h3>
         <p class="product-price">$48</p>
@@ -516,7 +534,7 @@
   </section>
 
   <section id="about">
-    <div class="about-img">🌿</div>
+    <div class="about-img"><img src="../assets/images/maison-about.jpg" alt="Inside the Maison Soleil boutique in Dallas"></div>
     <div class="about-content">
       <p class="section-label">Our story</p>
       <h2 class="section-title">Fashion that<br>fits your life.</h2>
@@ -530,11 +548,11 @@
     <p class="section-label">Follow along</p>
     <h2 class="section-title" style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:2rem;">@maisonsoleildallas</h2>
     <div class="insta-grid">
-      <div class="insta-item" style="background:#e8ddd0;">👗</div>
-      <div class="insta-item" style="background:#d4c9bb;">🌸</div>
-      <div class="insta-item" style="background:#ede4d8;">👜</div>
-      <div class="insta-item" style="background:#ddd4c8;">✨</div>
-      <div class="insta-item" style="background:#e4d8cc;">🧥</div>
+      <div class="insta-item" style="background:#e8ddd0;"><img src="../assets/images/maison-dress.jpg" alt="Linen Wrap Dress"></div>
+      <div class="insta-item" style="background:#d4c9bb;"><img src="../assets/images/maison-hero-spring.jpg" alt="Spring Collection at Maison Soleil"></div>
+      <div class="insta-item" style="background:#ede4d8;"><img src="../assets/images/maison-tote.jpg" alt="Woven Tote"></div>
+      <div class="insta-item" style="background:#ddd4c8;"><img src="../assets/images/maison-hoops.jpg" alt="Gold Hoop Set"></div>
+      <div class="insta-item" style="background:#e4d8cc;"><img src="../assets/images/maison-blazer.jpg" alt="Oversized Blazer"></div>
     </div>
   </section>
 

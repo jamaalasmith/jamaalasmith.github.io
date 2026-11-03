@@ -355,6 +355,15 @@
       position: relative;
     }
 
+    .barber-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .barber-availability {
       position: absolute;
       bottom: 1rem; left: 1rem;
@@ -436,6 +445,13 @@
       cursor: pointer;
       transition: opacity 0.2s;
       overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .gallery-item:hover { opacity: 0.8; }
@@ -666,7 +682,7 @@
       <h2 class="section-title">Meet Your Barbers</h2>
       <div class="barbers-grid">
         <div class="barber-card">
-          <div class="barber-img">💈<span class="barber-availability available">Available Today</span></div>
+          <div class="barber-img"><img src="../assets/images/kingdom-cuts-marcus.jpg" alt="Marcus J., Master Barber"><span class="barber-availability available">Available Today</span></div>
           <div class="barber-info">
             <div class="barber-name">Marcus J.</div>
             <div class="barber-title">Master Barber · 12 Years</div>
@@ -675,7 +691,7 @@
           </div>
         </div>
         <div class="barber-card">
-          <div class="barber-img">✂️<span class="barber-availability busy">Next Appt: 3pm</span></div>
+          <div class="barber-img"><img src="../assets/images/kingdom-cuts-deshawn.jpg" alt="DeShawn W., Senior Barber"><span class="barber-availability busy">Next Appt: 3pm</span></div>
           <div class="barber-info">
             <div class="barber-name">DeShawn W.</div>
             <div class="barber-title">Senior Barber · 8 Years</div>
@@ -684,7 +700,7 @@
           </div>
         </div>
         <div class="barber-card">
-          <div class="barber-img">🪒<span class="barber-availability available">Available Today</span></div>
+          <div class="barber-img"><img src="../assets/images/kingdom-cuts-jordan.jpg" alt="Jordan T., Barber, hot towel shave specialist"><span class="barber-availability available">Available Today</span></div>
           <div class="barber-info">
             <div class="barber-name">Jordan T.</div>
             <div class="barber-title">Barber · 5 Years</div>
@@ -700,13 +716,13 @@
     <p class="section-label">The work</p>
     <h2 class="section-title">Fresh Cuts</h2>
     <div class="gallery-grid">
-      <div class="gallery-item">💈</div>
-      <div class="gallery-item">✂️</div>
-      <div class="gallery-item">🪒</div>
-      <div class="gallery-item">👑</div>
-      <div class="gallery-item">💇</div>
-      <div class="gallery-item">✨</div>
-      <div class="gallery-item">💈</div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-1.jpg" alt="Fresh skin fade at Kingdom Cuts"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-2.jpg" alt="Taper and lineup in progress"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-3.jpg" alt="Hot towel straight razor shave"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-4.jpg" alt="Fresh cut and beard sculpt"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-5.jpg" alt="Classic scissor cut"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-6.jpg" alt="Beard sculpt and design finish"></div>
+      <div class="gallery-item"><img src="../assets/images/kingdom-cuts-gallery-7.jpg" alt="Inside Kingdom Cuts barbershop"></div>
     </div>
   </section>
 
